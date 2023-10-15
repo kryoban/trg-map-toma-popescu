@@ -18,6 +18,7 @@ import {
 } from 'leaflet';
 import { LocationService } from '../../../core/services/location.service';
 import { iconDefault, iconRed } from '../../../shared/utils/map-helpers';
+import { Location } from '../../../shared/models';
 
 Marker.prototype.options.icon = iconDefault;
 
@@ -30,7 +31,7 @@ Marker.prototype.options.icon = iconDefault;
 export class LeafletMapComponent implements AfterViewInit {
   @ViewChild('map', { static: false }) mapRef!: ElementRef;
 
-  @Output() markerClick: EventEmitter<any> = new EventEmitter();
+  @Output() markerClick: EventEmitter<Location> = new EventEmitter();
   @Output() mapClick: EventEmitter<void> = new EventEmitter();
 
   private map!: Map;
@@ -82,11 +83,11 @@ export class LeafletMapComponent implements AfterViewInit {
     });
   }
 
-  private onShowPopup(location: any): string {
+  private onShowPopup(location: Location): string {
     return location.name;
   }
 
-  private onMarkerClick(mapMarker: Marker, location: any): void {
+  private onMarkerClick(mapMarker: Marker, location: Location): void {
     this.clearSelectedMarker();
 
     mapMarker.setIcon(iconRed);

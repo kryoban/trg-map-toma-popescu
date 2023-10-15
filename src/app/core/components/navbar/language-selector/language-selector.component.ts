@@ -21,7 +21,7 @@ export class LanguageSelectorComponent {
 
   constructor(private ls: LanguageService) {}
 
-  onLocaleClick(localeCode: string) {
+  onLocaleClick(localeCode: string): void {
     this.ls.changeLanguage(localeCode as Languages);
   }
 }

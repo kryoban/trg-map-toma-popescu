@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
   APILocation,
   europeanCapitals,
@@ -23,7 +23,7 @@ export class LocationService {
     return this.locationsSubject.asObservable();
   }
 
-  addLocation(location: Omit<Location, 'id' | 'createdDate'>) {
+  addLocation(location: Omit<Location, 'id' | 'createdDate'>): void {
     const id = (this.locations.length + 1).toString();
     const createdDate = new Date().toISOString();
 
@@ -31,7 +31,7 @@ export class LocationService {
     this.locationsSubject.next(this.locations);
   }
 
-  editLocation(location: Location) {
+  editLocation(location: Location): void {
     this.locations = this.locations.map((loc) =>
       loc.id === location.id ? location : loc
     );

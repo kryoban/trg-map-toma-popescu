@@ -77,7 +77,6 @@ export class LocationsTableComponent implements OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.paginator);
     this.paginator._intl.getRangeLabel = customGetRangeLabel;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -92,7 +91,6 @@ export class LocationsTableComponent implements OnChanges, AfterViewInit {
   }
 
   private updateDataSource(data: Location[]): void {
-    console.log('updating ds', data);
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

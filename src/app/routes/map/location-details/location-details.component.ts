@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { LanguageService } from '../../../core/services/language.service';
 import { Observable, map } from 'rxjs';
-import { NestedDictionary } from '../../../shared/models';
+import { Location, NestedDictionary } from '../../../shared/models';
 
 @Component({
   selector: 'app-location-details',
@@ -19,7 +19,7 @@ import { NestedDictionary } from '../../../shared/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DrawerListComponent implements OnInit {
-  @Input() selectedLocation: any = null;
+  @Input() selectedLocation: Location | null = null;
 
   tr$!: Observable<NestedDictionary<string>>;
 

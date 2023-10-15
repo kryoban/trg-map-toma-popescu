@@ -12,7 +12,6 @@ import { LocationModalComponent } from './location-modal/location-modal.componen
   standalone: true,
   imports: [CommonModule, LocationsTableComponent, MatDialogModule],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   tableData$!: Observable<Location[]>;
@@ -47,8 +46,7 @@ export class DashboardComponent implements OnInit {
       data: location,
     });
 
-    dialogRef.afterClosed().subscribe((result: { goToFirstPage: boolean }) => {
-      console.log('The dialog was closed', result);
+    dialogRef.afterClosed().subscribe((result: { goToFirstPage: boolean }): void => {
       if (result.goToFirstPage) {
         this.tableData$ = this.locationService.getLocations();
       }

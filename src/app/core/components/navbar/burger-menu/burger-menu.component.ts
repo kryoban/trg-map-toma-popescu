@@ -19,7 +19,6 @@ import { AppRoutingModule } from '../../../../app-routing.module';
     MatMenuModule,
   ],
   templateUrl: './burger-menu.component.html',
-  styleUrls: ['./burger-menu.component.scss'],
 })
 export class BurgerMenuComponent {
   tr$!: Observable<NestedDictionary<string>>;
