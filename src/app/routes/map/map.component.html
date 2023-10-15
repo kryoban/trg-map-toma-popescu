@@ -1,0 +1,12 @@
+<mat-drawer-container class="w-full h-[calc(100%-64px)]" autosize>
+  <mat-drawer #drawer class="max-w-[160px] sm:min-w-[240px]" mode="side">
+    <app-location-details [selectedLocation]="locationDetails" />
+  </mat-drawer>
+
+  <div class="w-full h-full">
+    <app-leaflet-map
+      (markerClick)="onMarkerClick($event)"
+      (mapClick)="onMapClick()"
+    ></app-leaflet-map>
+  </div>
+</mat-drawer-container>

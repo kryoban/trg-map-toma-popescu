@@ -1,0 +1,7 @@
+<ng-container *ngIf="tableData$ | async as data">
+  <app-locations-table
+    [tableData]="data"
+    (editClick)="onEditClick($event)"
+    (addClick)="onAddClick()"
+  />
+</ng-container>

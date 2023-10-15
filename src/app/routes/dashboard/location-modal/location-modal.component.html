@@ -1,0 +1,85 @@
+<ng-container *ngIf="tr$ | async as tr">
+  <h1 mat-dialog-title>
+    {{ data.id ? tr["editModalTitle"] : tr["addModalTitle"] }}
+  </h1>
+  <div mat-dialog-content [formGroup]="locationForm">
+    <mat-form-field>
+      <mat-label>{{ tr["name"] }}</mat-label>
+      <input matInput formControlName="name" cdkFocusInitial />
+      <div *ngIf="isControlInvalid('name')">
+        <small
+          class="text-red-500"
+          *ngIf="locationForm.get('name')?.hasError('required')"
+        >
+          {{ tr["requiredError"] }}
+        </small>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ tr["address"] }}</mat-label>
+      <input matInput formControlName="address" />
+      <div *ngIf="isControlInvalid('address')">
+        <small
+          class="text-red-500"
+          *ngIf="locationForm.get('address')?.hasError('required')"
+        >
+          {{ tr["requiredError"] }}
+        </small>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ tr["latitude"] }}</mat-label>
+      <input matInput formControlName="lat" type="number" />
+      <div *ngIf="isControlInvalid('lat')">
+        <small
+          class="text-red-500"
+          *ngIf="locationForm.get('lat')?.hasError('required')"
+        >
+          {{ tr["requiredError"] }}
+        </small>
+        <small
+          class="text-red-500"
+          *ngIf="
+            locationForm.get('lat')?.hasError('min') ||
+            locationForm.get('lat')?.hasError('max')
+          "
+        >
+          {{ tr["latRangeError"] }}
+        </small>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ tr["longitude"] }}</mat-label>
+      <input matInput formControlName="lng" type="number" />
+      <div *ngIf="isControlInvalid('lng')">
+        <small
+          class="text-red-500"
+          *ngIf="locationForm.get('lng')?.hasError('required')"
+        >
+          {{ tr["requiredError"] }}
+        </small>
+        <small
+          class="text-red-500"
+          *ngIf="
+            locationForm.get('lng')?.hasError('min') ||
+            locationForm.get('lng')?.hasError('max')
+          "
+        >
+          {{ tr["lngRangeError"] }}
+        </small>
+      </div>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions class="px-4">
+    <button mat-raised-button (click)="onCancelClick()">
+      {{ tr["cancelButton"] }}
+    </button>
+    <button mat-raised-button color="primary" (click)="onSubmitClick()">
+      {{ data.id ? tr["editButton"] : tr["addButton"] }}
+    </button>
+  </div>
+</ng-container>

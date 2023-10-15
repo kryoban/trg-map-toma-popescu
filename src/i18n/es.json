@@ -1,0 +1,33 @@
+{
+  "navbar": {
+    "appTitle": "Mapa TRG",
+    "mapMenuTitle": "Mapa",
+    "dashboardMenuTitle": "Panel"
+  },
+  "locationDetails": {
+    "locationDetails": "Detalles de location",
+    "name": "Nombre",
+    "address": "Dirección",
+    "latitude": "Latitud",
+    "longitude": "Longitud",
+    "createdAt": "Creado en"
+  },
+  "dashboard": {
+    "tableItemsPerPage": "Artículos per página",
+    "name": "Nombre",
+    "address": "Dirección",
+    "latitude": "Lat",
+    "longitude": "Lng",
+    "createdAt": "Creado en"
+  },
+  "locationModal": {
+    "addModalTitle": "Añadir location",
+    "addButton": "Añadir",
+    "editModalTitle": "Editar location",
+    "editButton": "Actualizar",
+    "cancelButton": "Cancelar",
+    "requiredError": "Este campo es obligatorio",
+    "latRangeError": "Elija un valor entre -90 y 90",
+    "lngRangeError": "Elija un valor entre -180 y 180"
+  }
+}

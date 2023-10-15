@@ -1,0 +1,33 @@
+{
+  "navbar": {
+    "appTitle": "Harta TRG",
+    "mapMenuTitle": "Harta",
+    "dashboardMenuTitle": "Tabel"
+  },
+  "locationDetails": {
+    "locationDetails": "Detaliile locatiei",
+    "name": "Nume",
+    "address": "Adresa",
+    "latitude": "Latitudine",
+    "longitude": "Longitudine",
+    "createdAt": "Creata la"
+  },
+  "dashboard": {
+    "tableItemsPerPage": "Articole per pagina",
+    "name": "Nume",
+    "address": "Adresa",
+    "latitude": "Lat",
+    "longitude": "Lng",
+    "createdAt": "Creata la"
+  },
+  "locationModal": {
+    "addModalTitle": "Adauga locatie",
+    "addButton": "Adauga",
+    "editModalTitle": "Modifica locatie",
+    "editButton": "Modifica",
+    "cancelButton": "Anuleaza",
+    "requiredError": "Acest camp este obligatoriu",
+    "latRangeError": "Alege o valoare intre -90 si 90",
+    "lngRangeError": "Alege o valoare intre -180 si 180"
+  }
+}

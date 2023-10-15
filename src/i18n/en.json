@@ -1,0 +1,33 @@
+{
+  "navbar": {
+    "appTitle": "TRG Map",
+    "mapMenuTitle": "Map",
+    "dashboardMenuTitle": "Dashboard"
+  },
+  "locationDetails": {
+    "locationDetails": "Location details",
+    "name": "Name",
+    "address": "Address",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "createdAt": "Created at"
+  },
+  "dashboard": {
+    "tableItemsPerPage": "Items per page",
+    "name": "Name",
+    "address": "Address",
+    "latitude": "Lat",
+    "longitude": "Lng",
+    "createdAt": "Created at"
+  },
+  "locationModal": {
+    "addModalTitle": "Add location",
+    "addButton": "Add",
+    "editModalTitle": "Edit location",
+    "editButton": "Update",
+    "cancelButton": "Cancel",
+    "requiredError": "This field is required",
+    "latRangeError": "Choose a value between -90 and 90",
+    "lngRangeError": "Choose a value between -180 and 180"
+  }
+}

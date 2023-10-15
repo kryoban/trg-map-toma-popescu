@@ -1,0 +1,20 @@
+<ng-container *ngIf="tr$ | async as tr">
+  <mat-toolbar color="primary" class="flex justify-between">
+    <div class="flex items-center">
+      <app-burger-menu />
+      <span>{{ tr["appTitle"] }} 😎</span>
+    </div>
+
+    <div class="flex items-center w-full sm-hidden">
+      <div>
+        <a mat-button class="ml-8" routerLink="/map">
+          {{ tr["mapMenuTitle"] }}
+        </a>
+        <a mat-button class="ml-4" routerLink="/dashboard">
+          {{ tr["dashboardMenuTitle"] }}
+        </a>
+      </div>
+    </div>
+    <app-language-selector />
+  </mat-toolbar>
+</ng-container>

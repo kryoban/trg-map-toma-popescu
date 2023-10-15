@@ -1,0 +1,37 @@
+<mat-card *ngIf="selectedLocation && (tr$ | async) as tr">
+  <mat-card-header>
+    <mat-card-title class="drawer-title max-w-[200px] sm:max-w-none">{{
+      tr["locationDetails"]
+    }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-header>
+    <mat-card-subtitle>{{ tr["name"] }}</mat-card-subtitle>
+    <mat-card-title>{{ selectedLocation.name }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-header>
+    <mat-card-subtitle>{{ tr["address"] }}</mat-card-subtitle>
+    <mat-card-title class="max-w-[200px] sm:max-w-none">{{
+      selectedLocation.address
+    }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-header>
+    <mat-card-subtitle>{{ tr["latitude"] }}</mat-card-subtitle>
+    <mat-card-title>{{
+      selectedLocation.lat | number : "1.4-4"
+    }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-header>
+    <mat-card-subtitle>{{ tr["longitude"] }}</mat-card-subtitle>
+    <mat-card-title>{{
+      selectedLocation.lng | number : "1.4-4"
+    }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-header>
+    <mat-card-subtitle>{{ tr["createdAt"] }}</mat-card-subtitle>
+    <mat-card-title>{{ selectedLocation.createdDate | date }}</mat-card-title>
+  </mat-card-header>
+</mat-card>

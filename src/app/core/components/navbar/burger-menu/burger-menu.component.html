@@ -1,0 +1,13 @@
+<ng-container *ngIf="tr$ | async as tr">
+  <button mat-icon-button [matMenuTriggerFor]="burger" class="flex lg-hidden -ml-4">
+    <mat-icon fontIcon="menu" class="flex self-center mr-4" />
+  </button>
+  <mat-menu #burger="matMenu">
+    <a mat-menu-item routerLink="/map">
+      {{ tr["mapMenuTitle"] }}
+    </a>
+    <a mat-menu-item routerLink="/dashboard">
+      {{ tr["dashboardMenuTitle"] }}
+    </a>
+  </mat-menu>
+</ng-container>
