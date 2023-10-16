@@ -45,7 +45,7 @@ export class LanguageSelectorComponent {
    * code in order to switch between the two. Since it's a hack, I chose not to translate this text. :)
    *
    * The small dataset has the marker clusters disabled (added a check in location.service which disables marker clusters when
-   * the locations number exceeds the arbitrary value of 500) so it's easier to review the basic map / dashboard functionalies.
+   * the locations number exceeds the arbitrary value of 500) so it's easier to review the basic map / dashboard functionalities.
    *
    * The large dataset (50k random rows) will display the marker clusters as the browser would otherwise be in severe pain. :3
    */
