@@ -1,3 +1,6 @@
+import { Location } from '../models';
+import { MatSort } from '@angular/material/sort';
+
 export const customGetRangeLabel = (
   page: number,
   pageSize: number,
@@ -13,4 +16,41 @@ export const customGetRangeLabel = (
       ? Math.min(startIndex + pageSize, length)
       : startIndex + pageSize;
   return `${startIndex + 1} – ${endIndex} / ${length}`;
+};
+
+export const sortData = (): ((
+  items: Location[],
+  sort: MatSort
+) => Location[]) => {
+  const sortFunction = (items: Location[], sort: MatSort): Location[] => {
+    if (!sort.active || sort.direction === '') {
+      return items;
+    }
+    return items.sort((a: Location, b: Location) => {
+      let comparatorResult = 0;
+      switch (sort.active) {
+        case 'name':
+          comparatorResult = a.name
+            .toLowerCase()
+            .localeCompare(b.name.toLowerCase());
+          break;
+        case 'address':
+          comparatorResult = a.address
+            .toLowerCase()
+            .localeCompare(b.address.toLowerCase());
+          break;
+        case 'lat':
+          comparatorResult = parseFloat(a.lat) > parseFloat(b.lat) ? 1 : -1;
+          break;
+        case 'lng':
+          comparatorResult = parseFloat(a.lng) > parseFloat(b.lng) ? 1 : -1;
+          break;
+        case 'createdDate':
+          comparatorResult = a.createdDate.localeCompare(b.createdDate);
+          break;
+      }
+      return comparatorResult * (sort.direction == 'asc' ? 1 : -1);
+    });
+  };
+  return sortFunction;
 };

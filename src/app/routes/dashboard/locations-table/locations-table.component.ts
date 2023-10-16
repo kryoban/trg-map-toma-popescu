@@ -17,7 +17,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Observable, map } from 'rxjs';
 import { LanguageService } from '../../../core/services/language.service';
 import { Location, NestedDictionary } from '../../../shared/models';
-import { customGetRangeLabel } from '../../../shared/utils/table-helpers';
+import { customGetRangeLabel, sortData } from '../../../shared/utils/table-helpers';
 
 @Component({
   selector: 'app-locations-table',
@@ -67,6 +67,7 @@ export class LocationsTableComponent implements AfterViewInit {
 
   ngOnInit(): void {
     this.updateDataSource(this.tableData);
+    this.dataSource.sortData = sortData();
     this.tr$ = this.ls
       .getTranslationsForSelectedLanguage()
       .pipe(
@@ -104,6 +105,7 @@ export class LocationsTableComponent implements AfterViewInit {
   private updateDataSource(data: Location[]): void {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sortData = sortData();
     this.dataSource.sort = this.sort;
   }
 }
