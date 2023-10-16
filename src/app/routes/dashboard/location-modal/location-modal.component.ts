@@ -63,7 +63,6 @@ export class LocationModalComponent implements OnInit {
     this.tr$ = this.ls.getTranslationsForSelectedLanguage().pipe(
       map((translation) => {
         const { locationDetails, locationModal } = translation;
-        console.log(locationDetails, locationModal);
         return {
           ...(locationDetails as Record<string, string>),
           ...(locationModal as Record<string, string>),
@@ -87,11 +86,11 @@ export class LocationModalComponent implements OnInit {
     } else {
       this.locationService.addLocation(this.locationForm.value);
     }
-    this.dialogRef.close({ goToFirstPage: true });
+    this.dialogRef.close({ updateData: true });
   }
 
   onCancelClick(): void {
-    this.dialogRef.close({ goToFirstPage: false });
+    this.dialogRef.close({ updateData: false });
   }
 
   isControlInvalid(formControlName: string): boolean {

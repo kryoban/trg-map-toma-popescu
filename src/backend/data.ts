@@ -9,13 +9,17 @@ export interface APILocation {
   createdDate: string;
 }
 
-const getRandomFloat = (min: number, max: number, decimalPlaces: number) => {
+const getRandomFloat = (
+  min: number,
+  max: number,
+  decimalPlaces: number
+): number => {
   const random = Math.random() * (max - min) + min;
   const multiplier = 10 ** decimalPlaces;
   return Math.round(random * multiplier) / multiplier;
 };
 
-const getRandomDate = (startDate: Date, endDate: Date) => {
+const getRandomDate = (startDate: Date, endDate: Date): Date => {
   const startTimestamp = startDate.getTime();
   const endTimestamp = endDate.getTime();
   const randomTimestamp =
@@ -30,9 +34,9 @@ export const getListOfRandomLocations = (
 ): APILocation[] => {
   const locationsList = [];
 
-  for (let i = 0; i < numberOfLocations; i++) {
-    const lat = getRandomFloat(-90, 90, 6).toString();
-    const lng = getRandomFloat(-180, 180, 6).toString();
+  for (let i = 1; i <= numberOfLocations; i++) {
+    const lat = getRandomFloat(-84, 84, 6).toString();
+    const lng = getRandomFloat(-175, 175, 6).toString();
 
     locationsList.push({
       id: i.toString(),

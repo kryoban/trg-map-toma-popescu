@@ -4,13 +4,17 @@ import { DashboardComponent } from './routes/dashboard/dashboard.component';
 import { MapComponent } from './routes/map/map.component';
 
 const routes: Routes = [
-  { title: 'Map', path: 'map', loadComponent: () => MapComponent },
   {
-    title: 'Dashboard',
+    title: 'TRG | Map',
+    path: 'map',
+    loadComponent: () => MapComponent,
+  },
+  {
+    title: 'TRG | Dashboard',
     path: 'dashboard',
     loadComponent: () => DashboardComponent,
   },
-  { path: '', redirectTo: 'map', pathMatch: 'full' },
+  { path: '**', redirectTo: 'map' },
 ];
 
 @NgModule({

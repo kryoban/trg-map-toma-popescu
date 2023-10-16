@@ -11,10 +11,13 @@ import { Location } from '../../shared/models';
   providedIn: 'root',
 })
 export class LocationService {
-  private locations = europeanCapitals.map((location: APILocation) => {
-    const { continentName, countryCode, countryName, ...rest } = location;
-    return { ...rest, address: `${countryName} (${countryCode})` };
-  });
+  // private locations = europeanCapitals.map((location: APILocation) => {
+  private locations = getListOfRandomLocations(50_000).map(
+    (location: APILocation) => {
+      const { continentName, countryCode, countryName, ...rest } = location;
+      return { ...rest, address: `${countryName} (${countryCode})` };
+    }
+  );
   private locationsSubject: BehaviorSubject<Location[]> = new BehaviorSubject(
     this.locations
   );

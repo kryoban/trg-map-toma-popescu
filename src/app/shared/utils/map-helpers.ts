@@ -1,4 +1,13 @@
-import { icon, PointExpression } from 'leaflet';
+import {
+  Icon,
+  icon,
+  IconOptions,
+  latLng,
+  LatLngBounds,
+  latLngBounds,
+  LatLngExpression,
+  PointExpression,
+} from 'leaflet';
 
 const iconRetinaUrl = 'assets/images/blue-marker-32.png';
 const iconUrl = 'assets/images/blue-marker-32.png';
@@ -15,17 +24,23 @@ const iconOptions: { [key: string]: PointExpression } = {
   shadowSize: [41, 41],
 };
 
-export const iconDefault = icon({
+export const mapCenter: LatLngExpression = [44.43333333333333, 26.1];
+
+export const maxBounds: LatLngBounds = latLngBounds(
+  latLng(-90, -180),
+  latLng(90, 180)
+);
+
+export const iconDefault: Icon<IconOptions> = icon({
   iconRetinaUrl,
   iconUrl,
   shadowUrl,
   ...iconOptions,
 });
 
-export const iconRed = icon({
+export const iconRed: Icon<IconOptions> = icon({
   iconRetinaUrl: redIconRetinaUrl,
   iconUrl: redIconUrl,
   shadowUrl,
   ...iconOptions,
-  // iconSize: [41, 41],
 });

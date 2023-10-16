@@ -1,5 +1,19 @@
+<div
+  *ngIf="isLoading"
+  class="w-full h-[calc(100%-64px)] flex justify-center items-center"
+>
+  <mat-progress-spinner mode="indeterminate" class="w-4" />
+</div>
+
 <div *ngIf="tr$ | async as tr" class="px-2 overflow-x-auto">
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table
+    *ngIf="!isLoading"
+    mat-table
+    matSort
+    recycleRows
+    [dataSource]="dataSource"
+    [trackBy]="tableTracker"
+  >
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ tr["name"] }}
@@ -58,10 +72,12 @@
   </table>
 
   <div class="flex justify-end items-center">
-    <span class="text-xs opacity-80 hidden sm:block">{{ tr["tableItemsPerPage"] }}:</span>
+    <span class="text-xs opacity-80 hidden sm:block"
+      >{{ tr["tableItemsPerPage"] }}:</span
+    >
     <mat-paginator
-      [pageSizeOptions]="[5, 10, 25, 100]"
-      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 50, 100]"
+      [pageSize]="50"
     ></mat-paginator>
   </div>
 </div>

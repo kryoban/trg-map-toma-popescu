@@ -1,23 +1,22 @@
+import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Location, NestedDictionary } from '../../../shared/models';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { Observable, map } from 'rxjs';
 import { LanguageService } from '../../../core/services/language.service';
+import { Location, NestedDictionary } from '../../../shared/models';
 import { customGetRangeLabel } from '../../../shared/utils/table-helpers';
 
 @Component({
@@ -28,14 +27,14 @@ import { customGetRangeLabel } from '../../../shared/utils/table-helpers';
     MatButtonModule,
     MatIconModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
   ],
   templateUrl: './locations-table.component.html',
   styleUrls: ['./locations-table.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LocationsTableComponent implements OnChanges, AfterViewInit {
+export class LocationsTableComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -53,6 +52,7 @@ export class LocationsTableComponent implements OnChanges, AfterViewInit {
   ];
   dataSource!: MatTableDataSource<Location>;
   tr$!: Observable<NestedDictionary<string>>;
+  isLoading = true;
 
   constructor(private ls: LanguageService) {}
 
@@ -77,9 +77,16 @@ export class LocationsTableComponent implements OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.isLoading = false;
     this.paginator._intl.getRangeLabel = customGetRangeLabel;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.dataSource.sort !== this.sort) {
+      this.dataSource.sort = this.sort;
+    }
   }
 
   onEditClick(rowData: Location): void {
@@ -88,6 +95,10 @@ export class LocationsTableComponent implements OnChanges, AfterViewInit {
 
   onAddClick(): void {
     this.addClick.emit();
+  }
+
+  tableTracker(_: number, item: Location): string {
+    return `${item.id}`;
   }
 
   private updateDataSource(data: Location[]): void {

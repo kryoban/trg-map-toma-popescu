@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Location } from '../../shared/models';
 import { LocationService } from '../../core/services/location.service';
-import { Observable } from 'rxjs';
+import { Observable, distinctUntilChanged } from 'rxjs';
 import { LocationsTableComponent } from './locations-table/locations-table.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LocationModalComponent } from './location-modal/location-modal.component';
@@ -12,6 +12,7 @@ import { LocationModalComponent } from './location-modal/location-modal.componen
   standalone: true,
   imports: [CommonModule, LocationsTableComponent, MatDialogModule],
   templateUrl: './dashboard.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
   tableData$!: Observable<Location[]>;
@@ -30,7 +31,9 @@ export class DashboardComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.tableData$ = this.locationService.getLocations();
+    this.tableData$ = this.locationService
+      .getLocations()
+      .pipe(distinctUntilChanged());
   }
 
   onEditClick(location: Location): void {
@@ -46,10 +49,12 @@ export class DashboardComponent implements OnInit {
       data: location,
     });
 
-    dialogRef.afterClosed().subscribe((result: { goToFirstPage: boolean }): void => {
-      if (result.goToFirstPage) {
-        this.tableData$ = this.locationService.getLocations();
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .subscribe((result: { updateData: boolean }): void => {
+        if (result.updateData) {
+          this.tableData$ = this.locationService.getLocations();
+        }
+      });
   }
 }
