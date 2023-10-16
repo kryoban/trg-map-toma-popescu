@@ -9,3 +9,7 @@
 ::ng-deep .mat-mdc-paginator-page-size-label {
   display: none;
 }
+
+::ng-deep .mdc-notched-outline__notch {
+  border-right: none !important;
+}

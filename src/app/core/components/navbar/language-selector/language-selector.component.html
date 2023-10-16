@@ -3,7 +3,7 @@
 </button>
 <mat-menu #menu="matMenu">
   <ng-container *ngFor="let language of languagesList">
-    <button mat-menu-item (click)="onLocaleClick(language.code)">
+    <button mat-menu-item (click)="onLanguageClick(language.code)">
       {{ language.label }}
     </button>
   </ng-container>

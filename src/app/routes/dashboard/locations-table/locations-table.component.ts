@@ -17,7 +17,14 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Observable, map } from 'rxjs';
 import { LanguageService } from '../../../core/services/language.service';
 import { Location, NestedDictionary } from '../../../shared/models';
-import { customGetRangeLabel, sortData } from '../../../shared/utils/table-helpers';
+import {
+  customGetRangeLabel,
+  filterByNameOrAddress,
+  sortData,
+  tableColumns,
+} from '../../../shared/utils/table-helpers';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInput, MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-locations-table',
@@ -25,7 +32,9 @@ import { customGetRangeLabel, sortData } from '../../../shared/utils/table-helpe
   imports: [
     CommonModule,
     MatButtonModule,
+    MatFormFieldModule,
     MatIconModule,
+    MatInputModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSortModule,
@@ -37,19 +46,13 @@ import { customGetRangeLabel, sortData } from '../../../shared/utils/table-helpe
 export class LocationsTableComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatInput) input!: MatInput;
 
   @Input() tableData!: Location[];
   @Output() editClick: EventEmitter<Location> = new EventEmitter();
   @Output() addClick: EventEmitter<void> = new EventEmitter();
 
-  displayedColumns: string[] = [
-    'name',
-    'address',
-    'lat',
-    'lng',
-    'createdDate',
-    'edit',
-  ];
+  displayedColumns = tableColumns;
   dataSource!: MatTableDataSource<Location>;
   tr$!: Observable<NestedDictionary<string>>;
   isLoading = true;
@@ -67,7 +70,6 @@ export class LocationsTableComponent implements AfterViewInit {
 
   ngOnInit(): void {
     this.updateDataSource(this.tableData);
-    this.dataSource.sortData = sortData();
     this.tr$ = this.ls
       .getTranslationsForSelectedLanguage()
       .pipe(
@@ -102,10 +104,20 @@ export class LocationsTableComponent implements AfterViewInit {
     return `${item.id}`;
   }
 
+  applyFilter(): void {
+    this.dataSource.filter = this.input?.value.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   private updateDataSource(data: Location[]): void {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sortData = sortData();
     this.dataSource.sort = this.sort;
+    this.dataSource.filterPredicate = filterByNameOrAddress();
+    this.applyFilter();
   }
 }

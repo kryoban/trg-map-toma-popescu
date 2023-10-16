@@ -13,12 +13,14 @@
     "createdAt": "Creado en"
   },
   "dashboard": {
-    "tableItemsPerPage": "Artículos per página",
+    "filterText": "Filtrar por nombre o dirección",
+    "addButton": "Añadir",
     "name": "Nombre",
     "address": "Dirección",
     "latitude": "Lat",
     "longitude": "Lng",
-    "createdAt": "Creado en"
+    "createdAt": "Creado",
+    "tableItemsPerPage": "Artículos per página"
   },
   "locationModal": {
     "addModalTitle": "Añadir location",

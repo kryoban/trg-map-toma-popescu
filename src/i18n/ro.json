@@ -13,12 +13,14 @@
     "createdAt": "Creata la"
   },
   "dashboard": {
-    "tableItemsPerPage": "Articole per pagina",
+    "filterText": "Filtreaza dupa nume sau adresa",
+    "addButton": "Adauga",
     "name": "Nume",
     "address": "Adresa",
     "latitude": "Lat",
     "longitude": "Lng",
-    "createdAt": "Creata la"
+    "createdAt": "Creata",
+    "tableItemsPerPage": "Articole per pagina"
   },
   "locationModal": {
     "addModalTitle": "Adauga locatie",

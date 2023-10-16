@@ -13,12 +13,14 @@
     "createdAt": "Created at"
   },
   "dashboard": {
-    "tableItemsPerPage": "Items per page",
+    "filterText": "Filter by name or address",
+    "addButton": "Add",
     "name": "Name",
     "address": "Address",
     "latitude": "Lat",
     "longitude": "Lng",
-    "createdAt": "Created at"
+    "createdAt": "Created",
+    "tableItemsPerPage": "Items per page"
   },
   "locationModal": {
     "addModalTitle": "Add location",

@@ -26,6 +26,7 @@ export class LanguageSelectorComponent {
     { code: 'es', label: 'Español' },
     { code: 'ro', label: 'Romana' },
   ];
+  // part of the "hack", please scroll down for more info
   dataToggleLabel = this.localStorageService.getData('largeDataset')
     ? 'Less data'
     : 'More data';
@@ -35,18 +36,18 @@ export class LanguageSelectorComponent {
     private localStorageService: LocalStorageService
   ) {}
 
-  onLocaleClick(localeCode: string): void {
-    this.ls.changeLanguage(localeCode as Languages);
+  onLanguageClick(languageCode: string): void {
+    this.ls.changeLanguage(languageCode as Languages);
   }
 
   /**
-   * "Hack" to easily toggle between the small and large dataset so that whoever's reviewing this code doesn't have to modify
-   * it in order to switch between the two. Since it's a hack, I chose not to translate this text. :)
+   * "Hack" to easily toggle between the small and large dataset so that whoever's reviewing my work doesn't have to modify the
+   * code in order to switch between the two. Since it's a hack, I chose not to translate this text. :)
    *
    * The small dataset has the marker clusters disabled (added a check in location.service which disables marker clusters when
    * the locations number exceeds the arbitrary value of 500) so it's easier to review the basic map / dashboard functionalies.
    *
-   * The large dataset (50k rows) will display the marker clusters as the browser would otherwise be in severe pain. :3
+   * The large dataset (50k random rows) will display the marker clusters as the browser would otherwise be in severe pain. :3
    */
   onDataToggleClick(): void {
     const key = 'largeDataset';

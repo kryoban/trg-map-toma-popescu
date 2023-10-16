@@ -1,6 +1,15 @@
 import { Location } from '../models';
 import { MatSort } from '@angular/material/sort';
 
+export const tableColumns: string[] = [
+  'name',
+  'address',
+  'lat',
+  'lng',
+  'createdDate',
+  'edit',
+];
+
 export const customGetRangeLabel = (
   page: number,
   pageSize: number,
@@ -53,4 +62,21 @@ export const sortData = (): ((
     });
   };
   return sortFunction;
+};
+
+export const filterByNameOrAddress: () => (
+  data: Location,
+  filter: string
+) => boolean = () => {
+  const filterFunction = (data: Location, filter: string): boolean => {
+    if (filter) {
+      const { name, address } = data;
+      return (
+        name.toLowerCase().indexOf(filter) != -1 ||
+        address.toLowerCase().indexOf(filter) != -1
+      );
+    }
+    return true;
+  };
+  return filterFunction;
 };
