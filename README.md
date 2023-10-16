@@ -1,5 +1,24 @@
 # TrgMapTomaPopescu
 
+## Please read before reviewing the application
+I created a "hack" to easily toggle between the small and large dataset so that whoever's reviewing my work doesn't have to modify the code in order to switch between the two.
+
+To switch between the small dataset (list of European capitals) and the large one (50k randomly generated rows) one can click the "globe" icon 🌍 in the top right hand corner of the screen and can select "More / less data" below the 3 available languages.
+
+The small dataset has the marker clusters disabled (added a check in `location.service` which disables marker clusters when the locations number exceeds the arbitrary value of 500) so it's easier to review the basic map / dashboard functionalities.
+
+The large dataset will display the marker clusters as the browser would otherwise be in severe pain. :3
+
+
+Other things to consider 
+- the data is fetched / created using a single file - `src/backend/data` (not very async of me, I know)
+- the random dataset generator can be customised to return more / less locations, please check `location.service`
+- created custom sorting functions for the table (as by default it was not correctly sorting strings)
+- added an input above the table which allows filtering by name and address
+
+Hope you will enjoy my output as much as I enjoyed the journey :)
+
+##
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.6.
 
 ## Development server
