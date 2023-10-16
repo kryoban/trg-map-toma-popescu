@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { Location } from '@shared/models';
+import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 import { DrawerListComponent } from './location-details/location-details.component';
-import { Location } from '../../shared/models';
 
 @Component({
   selector: 'app-map',

@@ -7,16 +7,16 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import * as L from 'leaflet';
-import 'leaflet.markercluster';
-import { LocationService } from '../../../core/services/location.service';
+import { LocationService } from '@core/services/location.service';
+import { Location } from '@shared/models';
 import {
   iconDefault,
   iconRed,
   mapCenter,
   maxBounds,
-} from '../../../shared/utils/map-helpers';
-import { Location } from '../../../shared/models';
+} from '@shared/utils/map-helpers';
+import * as L from 'leaflet';
+import 'leaflet.markercluster';
 
 L.Marker.prototype.options.icon = iconDefault;
 

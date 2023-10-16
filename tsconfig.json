@@ -20,7 +20,12 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "@core/*": ["./src/app/core/*"],
+      "@routes/*": ["./src/app/routes/*"],
+      "@shared/*": ["./src/app/shared/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

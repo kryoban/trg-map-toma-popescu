@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Languages, NestedDictionary } from '@shared/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import * as en from 'src/i18n/en.json';
 import * as es from 'src/i18n/es.json';
 import * as ro from 'src/i18n/ro.json';
-import { Languages, NestedDictionary } from '../../shared/models';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({

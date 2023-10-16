@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Location } from '@shared/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {
   APILocation,
   europeanCapitals,
   getListOfRandomLocations,
 } from 'src/backend/data';
-import { Location } from '../../shared/models';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({

@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Location } from '../../shared/models';
-import { LocationService } from '../../core/services/location.service';
-import { Observable, distinctUntilChanged } from 'rxjs';
-import { LocationsTableComponent } from './locations-table/locations-table.component';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { LocationService } from '@core/services/location.service';
+import { Location } from '@shared/models';
+import { Observable, distinctUntilChanged } from 'rxjs';
 import { LocationModalComponent } from './location-modal/location-modal.component';
+import { LocationsTableComponent } from './locations-table/locations-table.component';
 
 @Component({
   selector: 'app-dashboard',

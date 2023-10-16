@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { AppRoutingModule } from '../../../../app-routing.module';
-import { LanguageService } from '../../../services/language.service';
-import { LanguageListItem, Languages } from '../../../../shared/models';
-import { LocalStorageService } from '../../../services/local-storage.service';
+import { Component } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { LanguageService } from '@core/services/language.service';
+import { LocalStorageService } from '@core/services/local-storage.service';
+import { LanguageListItem, Languages } from '@shared/models';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @Component({
   selector: 'app-language-selector',

@@ -9,22 +9,22 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Observable, map } from 'rxjs';
-import { LanguageService } from '../../../core/services/language.service';
-import { Location, NestedDictionary } from '../../../shared/models';
+import { LanguageService } from '@core/services/language.service';
+import { Location, NestedDictionary } from '@shared/models';
 import {
   customGetRangeLabel,
   filterByNameOrAddress,
   sortData,
   tableColumns,
-} from '../../../shared/utils/table-helpers';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInput, MatInputModule } from '@angular/material/input';
+} from '@shared/utils/table-helpers';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-locations-table',

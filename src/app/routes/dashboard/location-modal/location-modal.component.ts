@@ -15,10 +15,10 @@ import {
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Location, NestedDictionary } from '../../../shared/models';
-import { LocationService } from '../../../core/services/location.service';
+import { LanguageService } from '@core/services/language.service';
+import { LocationService } from '@core/services/location.service';
+import { Location, NestedDictionary } from '@shared/models';
 import { Observable, map } from 'rxjs';
-import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
   selector: 'app-location-modal',

@@ -4,12 +4,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { LanguageSelectorComponent } from './language-selector/language-selector.component';
-import { LanguageService } from '../../services/language.service';
+import { LanguageService } from '@core/services/language.service';
+import { NestedDictionary } from '@shared/models';
 import { Observable, map } from 'rxjs';
-import { NestedDictionary } from '../../../shared/models';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import { BurgerMenuComponent } from './burger-menu/burger-menu.component';
+import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 
 @Component({
   selector: 'app-navbar',

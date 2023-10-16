@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { LanguageService } from '@core/services/language.service';
+import { NestedDictionary } from '@shared/models';
 import { Observable, map } from 'rxjs';
-import { NestedDictionary } from '../../../../shared/models';
-import { LanguageService } from '../../../services/language.service';
-import { AppRoutingModule } from '../../../../app-routing.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @Component({
   selector: 'app-burger-menu',

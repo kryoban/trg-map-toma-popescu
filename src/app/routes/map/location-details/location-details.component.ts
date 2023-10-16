@@ -1,14 +1,14 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   Input,
   OnInit,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { LanguageService } from '../../../core/services/language.service';
+import { LanguageService } from '@core/services/language.service';
+import { Location, NestedDictionary } from '@shared/models';
 import { Observable, map } from 'rxjs';
-import { Location, NestedDictionary } from '../../../shared/models';
 
 @Component({
   selector: 'app-location-details',
