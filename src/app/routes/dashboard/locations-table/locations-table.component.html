@@ -2,7 +2,7 @@
   *ngIf="isLoading"
   class="w-full h-[calc(100%-64px)] flex justify-center items-center"
 >
-  <mat-progress-spinner mode="indeterminate" class="w-4" />
+  <mat-progress-spinner mode="indeterminate" />
 </div>
 
 <div *ngIf="tr$ | async as tr" class="px-2 overflow-x-auto">
@@ -77,7 +77,7 @@
     >
     <mat-paginator
       [pageSizeOptions]="[5, 10, 25, 50, 100]"
-      [pageSize]="25"
+      [pageSize]="10"
     ></mat-paginator>
   </div>
 </div>

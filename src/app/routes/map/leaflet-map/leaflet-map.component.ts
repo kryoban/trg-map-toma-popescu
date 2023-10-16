@@ -7,20 +7,18 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import {
-  latLng,
-  latLngBounds,
-  map,
-  Map,
-  marker,
-  Marker,
-  tileLayer,
-} from 'leaflet';
+import * as L from 'leaflet';
+import 'leaflet.markercluster';
 import { LocationService } from '../../../core/services/location.service';
-import { iconDefault, iconRed } from '../../../shared/utils/map-helpers';
+import {
+  iconDefault,
+  iconRed,
+  mapCenter,
+  maxBounds,
+} from '../../../shared/utils/map-helpers';
 import { Location } from '../../../shared/models';
 
-Marker.prototype.options.icon = iconDefault;
+L.Marker.prototype.options.icon = iconDefault;
 
 @Component({
   selector: 'app-leaflet-map',
@@ -34,8 +32,8 @@ export class LeafletMapComponent implements AfterViewInit {
   @Output() markerClick: EventEmitter<Location> = new EventEmitter();
   @Output() mapClick: EventEmitter<void> = new EventEmitter();
 
-  private map!: Map;
-  private selectedMarker!: Marker | null;
+  private map!: L.Map;
+  private selectedMarker!: L.Marker | null;
 
   constructor(private locationService: LocationService) {}
 
@@ -45,17 +43,17 @@ export class LeafletMapComponent implements AfterViewInit {
   }
 
   private initMap(): void {
-    this.map = map(this.mapRef.nativeElement, {
-      center: [44.43333333333333, 26.1],
+    this.map = L.map(this.mapRef.nativeElement, {
+      center: mapCenter,
       zoom: 5,
-      maxBounds: latLngBounds(latLng(-90, -180), latLng(90, 180)),
+      maxBounds,
     });
 
     this.map.addEventListener('click', () => {
       this.onMapClick();
     });
 
-    const tiles = tileLayer(
+    const tiles = L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       {
         maxZoom: 18,
@@ -69,25 +67,46 @@ export class LeafletMapComponent implements AfterViewInit {
 
   private addMarkersToMap(): void {
     this.locationService.getLocations().subscribe((locations) => {
-      locations.forEach((location) => {
-        const { lat, lng } = location;
-        const mapMarker = marker([parseFloat(lat), parseFloat(lng)]);
-
-        mapMarker.bindPopup(this.onShowPopup(location));
-        mapMarker.addEventListener('click', () =>
-          this.onMarkerClick(mapMarker, location)
-        );
-
-        mapMarker.addTo(this.map);
-      });
+      if (locations.length > 500) {
+        return this.createMarkerClusters(locations);
+      }
+      this.createMarkers(locations);
     });
+  }
+
+  private createMarkerClusters(locations: Location[]): void {
+    const markers = L.markerClusterGroup();
+    locations.forEach((location) => {
+      const mapMarker = this.createMarker(location);
+      markers.addLayer(mapMarker);
+    });
+    this.map.addLayer(markers);
+  }
+
+  private createMarkers(locations: Location[]): void {
+    locations.forEach((location) => {
+      const mapMarker = this.createMarker(location);
+      mapMarker.addTo(this.map);
+    });
+  }
+
+  private createMarker(location: Location): L.Marker {
+    const { lat, lng } = location;
+    const mapMarker = L.marker([parseFloat(lat), parseFloat(lng)]);
+
+    mapMarker.bindPopup(this.onShowPopup(location));
+    mapMarker.addEventListener('click', () =>
+      this.onMarkerClick(mapMarker, location)
+    );
+
+    return mapMarker;
   }
 
   private onShowPopup(location: Location): string {
     return location.name;
   }
 
-  private onMarkerClick(mapMarker: Marker, location: Location): void {
+  private onMarkerClick(mapMarker: L.Marker, location: Location): void {
     this.clearSelectedMarker();
 
     mapMarker.setIcon(iconRed);

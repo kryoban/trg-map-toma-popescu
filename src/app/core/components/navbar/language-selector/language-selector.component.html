@@ -7,4 +7,8 @@
       {{ language.label }}
     </button>
   </ng-container>
+  <mat-divider />
+  <button mat-menu-item (click)="onDataToggleClick()" class="italic">
+    {{ dataToggleLabel }}
+  </button>
 </mat-menu>

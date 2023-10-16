@@ -6,21 +6,26 @@ import {
   getListOfRandomLocations,
 } from 'src/backend/data';
 import { Location } from '../../shared/models';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocationService {
-  // private locations = europeanCapitals.map((location: APILocation) => {
-  private locations = getListOfRandomLocations(50_000).map(
-    (location: APILocation) => {
+  private locations;
+  private locationsSubject!: BehaviorSubject<Location[]>;
+
+  constructor(private localStorageService: LocalStorageService) {
+    const dataSource = this.localStorageService.getData('largeDataset')
+      ? getListOfRandomLocations(50_000)
+      : europeanCapitals;
+
+    this.locations = dataSource.map((location: APILocation) => {
       const { continentName, countryCode, countryName, ...rest } = location;
       return { ...rest, address: `${countryName} (${countryCode})` };
-    }
-  );
-  private locationsSubject: BehaviorSubject<Location[]> = new BehaviorSubject(
-    this.locations
-  );
+    });
+    this.locationsSubject = new BehaviorSubject(this.locations);
+  }
 
   getLocations(): Observable<Location[]> {
     return this.locationsSubject.asObservable();
